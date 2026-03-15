@@ -1,0 +1,301 @@
+
+:root {
+    --primary-orange: #f05a16; 
+    --hover-orange: #d64d10;
+    --bg-cream: #fbf5ee; 
+    --top-bar-bg: #2b2b2b;
+    --text-dark: #1a1a1a;
+    --text-muted: #8d8d8d;
+    --input-bg: #f4f5f6; 
+    --border-radius-large: 1.5rem;
+    --border-radius-pill: 50rem;
+}
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+.top-bar {
+    background-color: var(--top-bar-bg);
+    color: #888;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+.main-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.banner {
+    background-color: var(--primary-orange);
+    border-radius: var(--border-radius-large);
+    padding: 3rem 1rem 4rem 1rem;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+}
+.chef-hat-icon {
+    width: 60px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+.banner-title {
+    font-family: 'Impact', 'Arial Black', sans-serif; 
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    text-transform: capitalize;
+    letter-spacing: -0.5px;
+}
+.banner-subtitle {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+.search-filter-bar {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
+    margin: -10px 10px 30px 10px; 
+    display: flex;
+    align-items: center;
+}
+.search-input-wrapper {
+    background: var(--input-bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 4px 16px;
+    height: 48px;
+}
+.search-input-wrapper .search-icon {
+    font-size: 1.1rem;
+    margin-right: 8px;
+}
+.search-input-wrapper input {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+.search-input-wrapper input:focus {
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+}
+.search-input-wrapper input::placeholder {
+    color: #a0a0a0;
+}
+.filter-dropdown {
+    background: var(--input-bg);
+    border-radius: 8px;
+    padding: 0 16px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #4a4a4a;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.filter-dropdown i {
+    margin-right: 6px;
+    font-size: 1rem;
+}
+.filter-dropdown .ChevronIcon {
+    margin-left: 20px;
+    margin-right: 0;
+    font-size: 0.8rem;
+    color: #888;
+}
+.btn-add-recipe {
+    background-color: var(--primary-orange);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    height: 48px;
+    padding: 0 24px;
+    transition: background-color 0.2s;
+}
+.btn-add-recipe:hover {
+    background-color: var(--hover-orange);
+    color: white;
+}
+.results-count {
+    font-size: 0.95rem;
+    color: #8d8d8d;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.recipe-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+.recipe-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+.recipe-card .card-body {
+    padding: 24px;
+}
+.recipe-card .card-title {
+    font-size: 1.15rem;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    color: var(--text-dark);
+}
+.badge {
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+.badge-easy {
+    background-color: #111;
+    color: white;
+}
+.badge-medium {
+    background-color: #f1f1f1;
+    color: #333;
+}
+.card-desc {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: #7a7a7a !important;
+}
+.recipe-meta {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #888 !important;
+}
+.recipe-meta i {
+    font-size: 0.9rem;
+    margin-right: 4px;
+    color: #7a7a7a;
+}
+.tag-pill {
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    color: #6a6a6a;
+    border-radius: var(--border-radius-pill);
+    padding: 3px 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: lowercase;
+}
+@media (max-width: 991px) {
+    .search-filter-bar .row {
+        gap: 12px;
+    }
+    .filter-dropdown {
+        flex: 1;
+        justify-content: center;
+        padding: 0 10px;
+    }
+    .btn-add-recipe {
+        flex: 1;
+    }
+}
+
+/* Mobile specific responsive design */
+@media (max-width: 576px) {
+    /* Restore banner curve, top align title */
+    .banner {
+        padding: 1.5rem 1rem 4.5rem 1rem;
+        border-radius: var(--border-radius-large);
+        margin: 0;
+    }
+
+    .banner-title {
+        font-size: 2rem;
+    }
+
+    .banner-subtitle {
+        font-size: 0.95rem;
+    }
+
+    /* Search/Filter Bar */
+    .search-filter-bar {
+        margin: -40px 10px 20px 10px;
+        padding: 16px;
+        border-radius: 1.2rem;
+    }
+
+    .search-filter-bar .row {
+        gap: 12px;
+    }
+
+    /* Important: Put search on its own row, then dropdowns + button on next row */
+    .filter-dropdown {
+        flex: 1; /* Take equal remaining space */
+        width: auto;
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        justify-content: space-between;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .filter-dropdown .ChevronIcon {
+        margin-left: 4px; 
+    }
+    
+    .d-flex.gap-2 {
+        flex-wrap: nowrap; /* Keep on one line */
+        width: 100%;
+    }
+    
+    .btn-add-recipe.d-flex {
+        width: 42px;
+        height: 42px;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        border-radius: 10px; /* match dropdown radius */
+    }
+    
+    .btn-add-recipe {
+         font-size: 0; /* Hide text */
+    }
+    .btn-add-recipe::after {
+         content: "+";
+         font-size: 1.6rem;
+         font-weight: 400;
+         line-height: 1;
+    }
+
+    .results-count {
+        text-align: left;
+        margin-left: 10px;
+        margin-bottom: 16px;
+    }
+
+    /* Make grid 1 column explicitly, decrease card width with padding */
+    .recipe-grid > .col-12 {
+        width: 100%;
+        padding: 0 24px;
+        margin-bottom: 16px;
+    }
+}
