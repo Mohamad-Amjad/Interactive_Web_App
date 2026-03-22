@@ -1,52 +1,41 @@
-# Terra Kitchen 🍳
+# Terra Kitchen 🍳 (Phase 3: PHP & MySQL)
 
-Terra Kitchen is a modern, responsive, and fully dynamic web-based digital recipe book. Users can browse a curated list of recipes, search instantly by ingredients or tags, view detailed step-by-step cooking instructions, and interact with a dynamic "Add Recipe" form. 
+Terra Kitchen is a modern, responsive recipe book web application. Phase 3 introduces a robust backend powered by PHP and a local MySQL database, handling user authentication, session management, and dynamic contact forms.
 
-This project was built from scratch utilizing Vanilla web technologies and Bootstrap 5 for layout, mimicking a pixel-perfect Figma design.
+## ✨ New Phase 3 Features
 
-## ✨ Features
+- **User Authentication (`auth/`)**: Secure registration using `password_hash()` and login with `password_verify()`. Session handling keeps users authenticated across pages.
+- **Database Integration (`includes/db.php`)**: Connects the frontend to a local WAMP MySQL database safely using PDO.
+- **Dashboard (`dashboard.php`)**: A protected area that requires users to be logged in to view their account summary.
+- **Dynamic Contact Form (`contact.php`)**: Submits user feedback directly into the `messages` SQL table using asynchronous Fetch API (AJAX), preserving native UI validation without forcing page reloads.
 
-- **Dynamic Recipe Grid (`Home.html`)**: The homepage seamlessly generates and displays recipe cards automatically by parsing data from a centralized JavaScript array. Adding a new recipe is as easy as adding a new object to `recipes.js`.
-- **Live Search Filtering**: A real-time search bar that instantly filters the displayed recipe cards based on recipe titles, ingredients, tags, or cuisines without requiring a page reload.
-- **Dynamic Single-Page Recipe Details (`Recipe.html`)**: A unified template that catches URL parameters (e.g., `?id=pasta`) to dynamically generate beautiful, unique detail pages for every recipe, including prep times, ingredient lists, and sequential instructions.
-- **Interactive Forms (`AddRecipe.html`)**: Features an intuitive form that allows users to progressively add custom ingredient rows and instruction steps via JavaScript DOM manipulation.
-- **100% Mobile Responsive**: Custom CSS media queries tailored specifically to mobile devices, guaranteeing a pristine, app-like user experience regardless of screen size. 
-
-## 🛠️ Built With
-
-- **HTML5**: Semantic structuring.
-- **CSS3 / Bootstrap 5**: Clean, modern aesthetics using flexbox and grid layouts, alongside Bootstrap's robust component library.
-- **Vanilla JavaScript**: Complete DOM manipulation, URL parameter parsing, functional search algorithms, and dynamic HTML injection—zero heavy frameworks required.
-- **Bootstrap Icons**: Scalable vector icons for improved UI/UX.
-
-## 📁 Project Structure
+## 📁 Project Structure (Updated for Submission)
 
 ```text
-├── AddRecipe.html     # The interactive recipe insertion form
-├── Home.html          # The dynamic homepage & searchable recipe grid
-├── Recipe.html        # The dynamic single-page recipe template
-├── css/
-│   ├── AddRecipe.css
-│   ├── Home.css
-│   └── Recipe.css     # Modular stylesheets for each view
-├── js/
-│   ├── AddRecipe.js   # Logic for dynamic form rows
-│   ├── Home.js        # Logic for rendering recipe cards and live search
-│   ├── Recipe.js      # Logic for parsing URL params and rendering details
-│   └── recipes.js     # The core database array holding all recipe data
-└── images/            # Curated visual assets
+├── index.php          # The main homepage (replaces Home.html)
+├── contact.php        # Contact form with PHP processing
+├── dashboard.php      # Authenticated user dashboard
+├── database.sql       # MySQL Database dump
+├── auth/
+│   ├── register.php   # Registration logic & UI
+│   ├── login.php      # Login logic & UI
+│   └── logout.php     # Session destruction
+├── includes/
+│   ├── db.php         # PDO database connection
+│   └── functions.php  # Helper functions (isLoggedIn, sanitizeInput)
+├── css/, js/, images/ # Existing assets
+└── README.md
 ```
 
-## 🚀 Getting Started
+## 🚀 Getting Started (WAMP/XAMPP)
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/terra-kitchen.git
-   ```
-2. **Open the project:**
-   Simply navigate to the project directory and open `Home.html` in your preferred modern web browser. 
-   
-   *(Note: No build steps, `npm install`, or local server setup is required to interact with the site, as it relies purely on client-side vanilla JavaScript.)*
+1. **Database Setup:**
+   - Open `phpMyAdmin` (usually `http://localhost/phpmyadmin`).
+   - Create a new database named `recipe_book` (Collation: utf8mb4_general_ci).
+   - Import the provided `database.sql` file to automatically generate the `users`, `messages`, and `recipes` tables.
+2. **Server Setup:**
+   - Place this entire project folder into your WAMP `www` folder (or XAMPP `htdocs`).
+   - Open your browser and navigate to the project directory, e.g., `http://localhost/web project/index.php`.
 
-## 💡 How to Add a New Recipe
-To add a new recipe to the website, open `js/recipes.js` and add a new JSON object to the `recipes` array following the established schema. The `Home.html` grid and `Recipe.html` detail routes will automatically populate your new entry!
+## 💡 Notes on Frontend Integration
+The frontend JavaScript (`auth.js`, `recipes.js`) was preserved as much as possible to maintain the visual fidelity of the original React/Vanilla UI, while replacing the mock localStorage authentication with secure server-side PHP sessions.

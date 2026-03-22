@@ -22,7 +22,7 @@
                     // Build HTML
                     const cardHTML = `
                         <div class="col-12 col-sm-6 col-lg-3 js-recipe-card" data-search-terms="${searchTerms}">
-                            <a href="Recipe.html?id=${recipe.id}" class="text-decoration-none">
+                            <a href="Recipe.php?id=${recipe.id}" class="text-decoration-none">
                                 <div class="card recipe-card border-0 h-100">
                                     <img src="${recipe.image}" class="card-img-top" alt="${recipe.title}">
                                     <div class="card-body d-flex flex-column">

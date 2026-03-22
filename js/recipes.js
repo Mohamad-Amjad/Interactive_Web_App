@@ -1,4 +1,4 @@
-const recipes = [
+const staticRecipes = [
     {
         id: 'pasta',
         title: 'Creamy Carbonara Pasta',
@@ -129,3 +129,6 @@ const recipes = [
         ]
     }
 ];
+
+// Combine DB recipes with static recipes
+const recipes = (typeof window.dbRecipes !== 'undefined') ? [...window.dbRecipes, ...staticRecipes] : staticRecipes;

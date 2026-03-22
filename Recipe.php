@@ -1,3 +1,12 @@
+<?php
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
+
+if (!isLoggedIn()) {
+    header('Location: auth/login.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +28,15 @@
 
 
 
-    <div class="nav-header">
-        <a href="Home.html" class="back-link">
+    <div class="nav-header" style="position: relative;">
+        <a href="index.php" class="back-link">
             <i class="bi bi-arrow-left"></i> Back to Recipes
         </a>
+        <div id="auth-container" style="position: absolute; top: 20px; right: 20px;">
+             <span class="me-3 fw-bold d-none d-md-inline" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Welcome, <?= htmlspecialchars($_SESSION['username'] ?? 'User') ?></span>
+             <a href="dashboard.php" class="btn btn-outline-dark me-2 btn-sm fw-bold">Dashboard</a>
+             <a href="auth/logout.php" class="btn btn-primary-custom btn-sm fw-bold" style="background-color: var(--primary-orange); border: none;">Logout</a>
+        </div>
     </div>
 
     <div class="main-wrapper" id="recipe-container" style="display: none;">
@@ -96,13 +110,17 @@
         <div class="text-center py-5">
             <h2 class="fw-bold text-dark">Recipe Not Found</h2>
             <p class="text-muted">Sorry, we couldn't find the recipe you were looking for.</p>
-            <a href="Home.html" class="btn btn-primary-custom mt-3 px-4">Browse Recipes</a>
+            <a href="index.php" class="btn btn-primary-custom mt-3 px-4">Browse Recipes</a>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="js/recipes.js"></script>
+    <script>
+        window.PHP_INTEGRATION = true;
+        window.dbRecipes = <?= getDbRecipesJson() ?>;
+    </script>
+    <script src="js/recipes.js?v=2"></script>
     <script src="js/Recipe.js"></script>
 
 </body>

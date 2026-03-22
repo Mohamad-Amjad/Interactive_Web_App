@@ -1,3 +1,7 @@
+<?php
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +20,26 @@
     <div class="main-wrapper">
         <div class="container-fluid px-2 py-2 p-md-4">
 
-            <div class="banner text-center text-white">
+            <div class="banner text-center text-white position-relative">
+                <div id="auth-container" style="position: absolute; top: 20px; right: 20px;">
+                    <?php if(isLoggedIn()): ?>
+                        <span class="me-3 fw-bold d-none d-md-inline" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Welcome, <?= htmlspecialchars($_SESSION['username'] ?? 'User') ?></span>
+                        <a href="dashboard.php" class="btn btn-outline-light me-2 btn-sm fw-bold">Dashboard</a>
+                        <a href="auth/logout.php" class="btn btn-primary-custom btn-sm fw-bold" style="background-color: var(--primary-orange); border: none;">Logout</a>
+                    <?php else: ?>
+                        <a href="auth/login.php" class="btn btn-outline-light me-2 btn-sm fw-bold">Login</a>
+                        <a href="auth/register.php" class="btn btn-primary-custom btn-sm fw-bold" style="background-color: var(--primary-orange); border: none;">Register</a>
+                    <?php endif; ?>
+                </div>
                 <img src="images/chef hat.png" alt="Chef Hat" class="chef-hat-icon">
                 <h1 class="banner-title">Terra Kitchen</h1>
                 <p class="banner-subtitle">
                     Discover, save, and share your favorite recipes. Add personal notes and create your culinary<br class="d-none d-md-block">
                     masterpiece collection.
                 </p>
+                <div class="mt-3">
+                    <a href="contact.php" class="text-white text-decoration-underline" style="font-size: 14px;">Contact Us</a>
+                </div>
             </div>
             <div class="search-filter-bar">
                 <div class="row align-items-center g-3 w-100 m-0">
@@ -40,7 +57,7 @@
                         <div class="filter-dropdown">
                             <i class="bi bi-funnel"></i> All Cuisines <i class="bi bi-chevron-down ChevronIcon"></i>
                         </div>
-                        <a href="AddRecipe.html" class="btn btn-add-recipe fw-bold text-decoration-none d-flex align-items-center justify-content-center">
+                        <a href="AddRecipe.php" class="btn btn-add-recipe fw-bold text-decoration-none d-flex align-items-center justify-content-center">
                             + Add Recipe
                         </a>
                     </div>
@@ -56,7 +73,23 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/recipes.js"></script>
-    <script src="js/Home.js"></script>
+    <script>
+        // Set a global window flag so that auth.js/recipes.js knows it's the PHP version running 
+        window.PHP_INTEGRATION = true;
+        window.dbRecipes = <?= getDbRecipesJson() ?>;
+        // Optionally, stub Auth to prevent JS from overriding the PHP rendered auth container
+        window.Auth = {
+            requireAuth: function() {
+                <?php if(!isLoggedIn()): ?>
+                window.location.href = 'auth/login.php';
+                <?php endif; ?>
+            },
+            init: function() {} // do nothing to not override PHP
+        };
+    </script>
+    <!-- We keep the JS to render recipes dynamically for now -->
+    <!-- <script src="js/auth.js"></script> We disable client-side auth injection -->
+    <script src="js/recipes.js?v=2"></script>
+    <script src="js/Home.js?v=2"></script>
 </body>
 </html>

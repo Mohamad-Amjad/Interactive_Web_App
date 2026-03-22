@@ -9,10 +9,10 @@
                 newRow.className = 'row g-2 mb-4 flex-nowrap ingredient-row';
                 newRow.innerHTML = `
                     <div class="col-7 pe-1">
-                        <input type="text" class="form-control custom-input" placeholder="Ingredient name">
+                        <input type="text" name="ingredients[]" class="form-control custom-input" placeholder="Ingredient name" required>
                     </div>
                     <div class="col-5 ps-1 d-flex gap-2">
-                        <input type="text" class="form-control custom-input flex-grow-1" placeholder="Amount">
+                        <input type="text" name="amounts[]" class="form-control custom-input flex-grow-1" placeholder="Amount" required>
                         <button type="button" class="btn btn-outline-danger btn-sm rounded px-2 remove-ingredient" style="border:none;" title="Remove">
                             <i class="bi bi-trash"></i>
                         </button>
@@ -38,7 +38,7 @@
                 newRow.className = 'd-flex gap-3 mb-4 align-items-start instruction-step-row';
                 newRow.innerHTML = `
                     <div class="step-badge">${nextStepNum}</div>
-                    <textarea class="form-control custom-input flex-grow-1" rows="2" placeholder="Step ${nextStepNum} instructions"></textarea>
+                    <textarea name="instructions[]" class="form-control custom-input flex-grow-1" rows="2" placeholder="Step ${nextStepNum} instructions" required></textarea>
                     <button type="button" class="btn btn-outline-danger btn-sm rounded mt-2 remove-step" style="border:none;" title="Remove Step">
                         <i class="bi bi-trash"></i>
                     </button>
