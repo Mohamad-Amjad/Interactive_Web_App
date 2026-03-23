@@ -6,7 +6,6 @@ Terra Kitchen is a modern, responsive recipe book web application. It features a
 
 - **User Authentication**: Secure user registration and login system.
 - **Recipe Management**: Users can view, search, and add custom recipes with dynamically added ingredients and instructions.
-- **Shopping Cart & Checkout**: Integrated cart system with secure card-only payment processing.
 - **Interactive UI**: Clean, responsive design tailored for all devices.
 - **Contact Form**: Dynamic user feedback submission process.
 - **User Dashboard**: A personalized dashboard area for authenticated users.
