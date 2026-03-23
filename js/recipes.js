@@ -130,5 +130,4 @@ const staticRecipes = [
     }
 ];
 
-// Combine DB recipes with static recipes
 const recipes = (typeof window.dbRecipes !== 'undefined') ? [...window.dbRecipes, ...staticRecipes] : staticRecipes;

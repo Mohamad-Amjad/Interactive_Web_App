@@ -74,7 +74,7 @@ $user = $stmt->fetch();
             </div>
             
             <div class="row g-4 recipe-grid" id="recipe-grid">
-               <!-- Recipes will be dynamically injected here by Home.js -->
+               
             </div>
 
         </div>

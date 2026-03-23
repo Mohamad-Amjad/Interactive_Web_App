@@ -13,13 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($username) || empty($email) || empty($password)) {
         $error = 'All fields are required.';
     } else {
-        // Check if email already exists
         $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->execute([$email]);
         if ($stmt->fetch()) {
             $error = 'Email is already registered. Please login.';
         } else {
-            // Hash the password
             $hashed = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
             try {
@@ -29,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $error = 'Failed to register user. Please try again.';
                 }
             } catch (PDOException $e) {
-                // If username is also unique in DB (though we only made email unique in schema), handle gracefully
                 $error = 'An error occurred during registration.';
             }
         }

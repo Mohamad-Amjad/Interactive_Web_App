@@ -2,7 +2,6 @@
 require_once '../includes/db.php';
 require_once '../includes/functions.php';
 
-// If already logged in, redirect
 if (isLoggedIn()) {
     header("Location: ../dashboard.php");
     exit();
@@ -17,13 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($username) || empty($password)) {
         $error = 'Both username and password are required.';
     } else {
-        // Find user by username or email
         $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
         $stmt->execute([$username, $username]);
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-            // Success
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             header("Location: ../dashboard.php");

@@ -1,6 +1,5 @@
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Add Ingredient functionality
             const btnAddIngredient = document.getElementById('btn-add-ingredient');
             const ingredientsContainer = document.getElementById('ingredients-container');
 
@@ -20,13 +19,11 @@
                 `;
                 ingredientsContainer.appendChild(newRow);
 
-                // Attach remove event listener
                 newRow.querySelector('.remove-ingredient').addEventListener('click', function() {
                     newRow.remove();
                 });
             });
 
-            // Add Step functionality
             const btnAddStep = document.getElementById('btn-add-step');
             const stepsContainer = document.getElementById('steps-container');
 
@@ -45,14 +42,12 @@
                 `;
                 stepsContainer.appendChild(newRow);
                 
-                // Attach remove event listener and re-number
                 newRow.querySelector('.remove-step').addEventListener('click', function() {
                     newRow.remove();
                     reindexSteps();
                 });
             });
 
-            // Reindex step numbers
             function reindexSteps() {
                 const rows = stepsContainer.querySelectorAll('.instruction-step-row');
                 rows.forEach((row, index) => {

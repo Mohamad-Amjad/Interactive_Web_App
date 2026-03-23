@@ -67,28 +67,24 @@ require_once 'includes/functions.php';
                 Showing <span class="fw-bold" id="visible-recipe-count" style="color: var(--primary-orange);">8</span> of <span id="total-recipe-count">8</span> recipes
             </div>
             <div class="row g-4 recipe-grid" id="recipe-grid">
-               <!-- Recipes will be dynamically injected here by Home.js -->
             </div>
 
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Set a global window flag so that auth.js/recipes.js knows it's the PHP version running 
         window.PHP_INTEGRATION = true;
         window.dbRecipes = <?= getDbRecipesJson() ?>;
-        // Optionally, stub Auth to prevent JS from overriding the PHP rendered auth container
         window.Auth = {
             requireAuth: function() {
                 <?php if(!isLoggedIn()): ?>
                 window.location.href = 'auth/login.php';
                 <?php endif; ?>
             },
-            init: function() {} // do nothing to not override PHP
+            init: function() {} 
         };
     </script>
-    <!-- We keep the JS to render recipes dynamically for now -->
-    <!-- <script src="js/auth.js"></script> We disable client-side auth injection -->
+
     <script src="js/recipes.js?v=2"></script>
     <script src="js/Home.js?v=2"></script>
 </body>

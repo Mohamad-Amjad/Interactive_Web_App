@@ -5,21 +5,17 @@
             const visibleCountSpan = document.getElementById('visible-recipe-count');
             const totalCountSpan = document.getElementById('total-recipe-count');
             
-            // Function to safely truncate description for preview
             function truncateContent(text, maxLength) {
                 if (text.length <= maxLength) return text;
                 return text.substring(0, maxLength) + '...';
             }
 
-            // Function to render all recipes
             function renderRecipes(recipesToRender) {
                 recipeGrid.innerHTML = ''; // Clear container
                 
                 recipesToRender.forEach(recipe => {
-                    // Create search terms string
                     const searchTerms = `${recipe.title} ${recipe.tags.join(' ')} ${recipe.cuisine} ${recipe.ingredients.map(i=>i.name).join(' ')}`.toLowerCase();
                     
-                    // Build HTML
                     const cardHTML = `
                         <div class="col-12 col-sm-6 col-lg-3 js-recipe-card" data-search-terms="${searchTerms}">
                             <a href="Recipe.php?id=${recipe.id}" class="text-decoration-none">
@@ -48,14 +44,12 @@
                 });
             }
 
-            // Initial Render (recipes array is loaded from recipes.js)
             if (typeof recipes !== 'undefined') {
                 renderRecipes(recipes);
                 totalCountSpan.textContent = recipes.length;
                 visibleCountSpan.textContent = recipes.length;
             }
 
-            // Search Logic
             searchInput.addEventListener('input', (e) => {
                 const searchTerm = e.target.value.toLowerCase().trim();
                 const allCards = document.querySelectorAll('.js-recipe-card');
